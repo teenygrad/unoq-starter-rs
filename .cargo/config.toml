@@ -1,0 +1,9 @@
+[target.thumbv8m.main-none-eabihf]
+rustflags = ["-C", "link-arg=-Tlink.x", "-C", "link-arg=-Tdefmt.x"]
+
+[target.aarch64-unknown-linux-gnu]
+linker = "aarch64-linux-gnu-gcc"
+
+[alias]
+mcu-build = "build -p mcu --target thumbv8m.main-none-eabihf --release"
+mpu-build = "build -p mpu --target aarch64-unknown-linux-gnu --release"

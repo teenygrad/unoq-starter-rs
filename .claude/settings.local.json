@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "Bash(cargo build:*)",
+      "Bash(/Users/arshadm/Workspace/projects/spinorml/unoq-starter/target/debug/mpu)",
+      "WebFetch(domain:crates.io)",
+      "WebFetch(domain:rustacean.net)",
+      "WebFetch(domain:www.arduino.cc)",
+      "WebFetch(domain:cdn.arduino.cc)",
+      "Bash(curl:*)",
+      "Bash(convert:*)",
+      "WebFetch(domain:acassis.wordpress.com)",
+      "WebFetch(domain:docs.zephyrproject.org)",
+      "WebFetch(domain:github.com)"
+    ]
+  }
+}

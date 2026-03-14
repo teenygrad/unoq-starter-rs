@@ -1,0 +1,9 @@
+[workspace]
+members = ["mpu", "mcu"]
+resolver = "3"
+
+[profile.release]
+codegen-units = 1
+debug = true
+lto = true
+opt-level = "s"
