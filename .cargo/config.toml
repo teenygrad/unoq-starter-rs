@@ -1,5 +1,5 @@
 [target.thumbv8m.main-none-eabihf]
-rustflags = ["-C", "link-arg=-Tlink.x", "-C", "link-arg=-Tdefmt.x"]
+rustflags = ["-C", "link-arg=-Tlink.x", "-C", "link-arg=-Map=app.map"]
 
 [target.aarch64-unknown-linux-gnu]
 linker = "aarch64-linux-gnu-gcc"

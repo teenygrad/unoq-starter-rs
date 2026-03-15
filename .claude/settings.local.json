@@ -12,7 +12,9 @@
       "Bash(convert:*)",
       "WebFetch(domain:acassis.wordpress.com)",
       "WebFetch(domain:docs.zephyrproject.org)",
-      "WebFetch(domain:github.com)"
+      "WebFetch(domain:github.com)",
+      "Bash(arm-none-eabi-objdump:*)",
+      "Bash(cargo objdump:*)"
     ]
   }
 }

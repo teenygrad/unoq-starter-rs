@@ -2,17 +2,19 @@
 #![no_main]
 
 use cortex_m_rt::entry;
-use defmt_rtt as _;
-use panic_probe as _;
+use cortex_m_semihosting::hprintln;
+use panic_halt as _;
 
 #[entry]
 fn main() -> ! {
-    defmt::info!("Hello from STM32U585 MCU (Arm Cortex-M33)!");
+    hprintln!("Hello from STM32U585 MCU (Arm Cortex-M33)!");
 
+    let mut count: u32 = 0;
     loop {
-        for _ in 0..1_000_000 {
-            cortex_m::asm::nop();
-        }
-        defmt::info!("Hello from STM32U585 MCU (Arm Cortex-M33)!");
+        count += 1;
+        hprintln!("tick {}", count);
+
+        // ~1 second delay at default clock speed (4 MHz MSI)
+        cortex_m::asm::delay(4_000_000);
     }
 }

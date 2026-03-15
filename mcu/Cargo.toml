@@ -7,6 +7,5 @@ description = "Hello world for STM32U585 MCU (Arm Cortex-M33)"
 [dependencies]
 cortex-m = { version = "0.7", features = ["critical-section-single-core"] }
 cortex-m-rt = "0.7"
-defmt = "1.0"
-defmt-rtt = "1.0"
-panic-probe = { version = "1.0", features = ["print-defmt"] }
+cortex-m-semihosting = "0.5"
+panic-halt = "1.0"

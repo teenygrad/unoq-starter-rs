@@ -97,18 +97,12 @@ brew install android-platform-tools
 sudo apt-get install adb
 ```
 
-Install ARM GDB for MCU debugging:
+Install ARM GDB for MCU debugging (optional):
 
 **macOS (Homebrew):**
 
 ```bash
 brew install arm-none-eabi-gdb
-```
-
-Install the defmt log decoder for RTT log output:
-
-```bash
-cargo install defmt-print
 ```
 
 Verify the board is detected via ADB:
@@ -201,7 +195,7 @@ target/aarch64-unknown-linux-gnu/release/mpu       # MPU release
 
 ### MCU (STM32U585)
 
-The MCU crate uses [defmt](https://defmt.ferrous-systems.com/) + RTT for structured, high-performance logging. Panics are captured by [panic-probe](https://crates.io/crates/panic-probe) with defmt output.
+The MCU crate uses [semihosting](https://docs.rs/cortex-m-semihosting/) for debug output via the OpenOCD connection. Log output appears directly in the `mcu-server` terminal.
 
 Flashing and debugging goes through the QRB2210's internal OpenOCD server, accessed via ADB over USB. This requires two terminals.
 
@@ -211,31 +205,21 @@ Flashing and debugging goes through the QRB2210's internal OpenOCD server, acces
 make mcu-server
 ```
 
+Semihosting output (`hprintln!`) will appear in this terminal.
+
 **Terminal 2 — Set up port forwarding (once per USB connection):**
 
 ```bash
 make mcu-forward
 ```
 
-**Terminal 2 — Build, flash, and stream RTT logs:**
-
-```bash
-make mcu-run
-```
-
-This will build the firmware, push it to the board via ADB, flash it through OpenOCD, and stream `defmt` log messages to your terminal.
-
-**Flash only (no log streaming):**
+**Terminal 2 — Build and flash:**
 
 ```bash
 make mcu-flash
 ```
 
-**Stream RTT logs (after flashing):**
-
-```bash
-make mcu-log
-```
+This will build the firmware, push it to the board via ADB, flash it through OpenOCD, enable semihosting, and reset the MCU. Watch Terminal 1 for log output.
 
 **GDB debug session:**
 

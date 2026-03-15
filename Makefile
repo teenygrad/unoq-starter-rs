@@ -44,14 +44,8 @@ mcu-server:
 mcu-flash: mcu-build
 	adb push $(MCU_ELF) /tmp/mcu.elf
 	@echo "Flashing MCU via OpenOCD..."
-	echo "init; reset halt; flash write_image erase /tmp/mcu.elf; verify_image /tmp/mcu.elf; reset run" | nc localhost 4444
-	@echo "Waiting for RTT control block to initialize..."
-	sleep 5
-	echo "rtt setup 0x20000000 196608 \"SEGGER RTT\"; rtt start; rtt server start 9090 0" | nc localhost 4444
-
-mcu-run: mcu-flash
-	@echo "Streaming RTT logs from MCU (Ctrl+C to stop)..."
-	nc localhost 9090 | defmt-print -e $(MCU_ELF)
+	(echo "init; reset halt; flash write_image erase /tmp/mcu.elf; verify_image /tmp/mcu.elf; arm semihosting enable; reset run"; sleep 1) | nc localhost 4444
+	@echo "Firmware flashed. Semihosting output appears in the mcu-server terminal."
 
 mcu-debug: mcu-build
 	arm-none-eabi-gdb $(MCU_ELF) \
@@ -61,7 +55,7 @@ mcu-debug: mcu-build
 		-ex "monitor reset run"
 
 mcu-log:
-	nc localhost 9090 | defmt-print -e $(MCU_ELF)
+	@echo "Semihosting output appears in the mcu-server terminal."
 
 # --- Utilities ---
 
