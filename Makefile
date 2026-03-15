@@ -16,7 +16,7 @@ mpu-build:
 mpu-install: mpu-build
 	scp target/$(MPU_TARGET)/release/mpu $(DEVICE_USER)@$(DEVICE):$(DEVICE_DIR)/mpu
 
-mpu-run: mpu-install
+mpu-run: 
 	ssh $(DEVICE_USER)@$(DEVICE) 'RUST_LOG=info $(DEVICE_DIR)/mpu'
 
 mpu-deploy: mpu-install mpu-run
