@@ -1,8 +1,14 @@
 [package]
-name = "mpu"
+name = "unoq-starter-mpu"
 version = "0.1.0"
 edition = "2024"
 description = "Hello world for QRB2210 MPU (Arm Cortex-A53, Debian Linux)"
+license = "Apache-2.0"
+readme = "../README.md"
+keywords = ["embedded", "linux", "arm", "aarch64", "arduino-uno-q"]
+repository = "https://github.com/teenygrad/unoq-starter-rs"
+homepage = "https://github.com/teenygrad/unoq-starter-rs"
+documentation = "https://docs.rs/unoq-starter-mpu"
 
 [dependencies]
 env_logger = "0.11"

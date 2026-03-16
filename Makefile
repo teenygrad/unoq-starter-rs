@@ -6,18 +6,18 @@ DEVICE_DIR  ?= /home/arduino/bin
 
 MPU_TARGET  = aarch64-unknown-linux-gnu
 MCU_TARGET  = thumbv8m.main-none-eabihf
-MCU_ELF     = target/$(MCU_TARGET)/release/mcu
+MCU_ELF     = target/$(MCU_TARGET)/release/unoq-starter-mcu
 
 # --- MPU (QRB2210) ---
 
 mpu-build:
-	cargo build -p mpu --target $(MPU_TARGET) --release
+	cargo build -p unoq-starter-mpu --target $(MPU_TARGET) --release
 
 mpu-install: mpu-build
-	scp target/$(MPU_TARGET)/release/mpu $(DEVICE_USER)@$(DEVICE):$(DEVICE_DIR)/mpu
+	scp target/$(MPU_TARGET)/release/unoq-starter-mpu $(DEVICE_USER)@$(DEVICE):$(DEVICE_DIR)/unoq-starter-mpu
 
 mpu-run: 
-	ssh $(DEVICE_USER)@$(DEVICE) 'RUST_LOG=info $(DEVICE_DIR)/mpu'
+	ssh $(DEVICE_USER)@$(DEVICE) 'RUST_LOG=info $(DEVICE_DIR)/unoq-starter-mpu'
 
 mpu-deploy: mpu-install mpu-run
 
@@ -31,7 +31,7 @@ mpu-deploy: mpu-install mpu-run
 #   3. make mcu-flash    (Terminal 2 — build + push + flash)
 
 mcu-build:
-	cargo build -p mcu --target $(MCU_TARGET) --release
+	cargo build -p unoq-starter-mcu --target $(MCU_TARGET) --release
 
 mcu-forward:
 	adb forward tcp:3333 tcp:3333

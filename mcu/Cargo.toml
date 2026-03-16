@@ -1,8 +1,14 @@
 [package]
-name = "mcu"
+name = "unoq-starter-mcu"
 version = "0.1.0"
 edition = "2024"
 description = "Hello world for STM32U585 MCU (Arm Cortex-M33)"
+license = "Apache-2.0"
+readme = "../README.md"
+keywords = ["embedded", "no-std", "arm", "stm32", "arduino-uno-q"]
+repository = "https://github.com/teenygrad/unoq-starter-rs"
+homepage = "https://github.com/teenygrad/unoq-starter-rs"
+documentation = "https://docs.rs/unoq-starter-mcu"
 
 [dependencies]
 cortex-m = { version = "0.7", features = ["critical-section-single-core"] }
