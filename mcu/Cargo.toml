@@ -5,6 +5,7 @@ edition = "2024"
 description = "Hello world for STM32U585 MCU (Arm Cortex-M33)"
 license = "Apache-2.0"
 readme = "../README.md"
+publish = false
 keywords = ["embedded", "no-std", "arm", "stm32", "arduino-uno-q"]
 repository = "https://github.com/teenygrad/unoq-starter-rs"
 homepage = "https://github.com/teenygrad/unoq-starter-rs"
